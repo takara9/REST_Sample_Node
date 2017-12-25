@@ -4,8 +4,8 @@
 */
 var request = require('request')
 
-//var url = 'http://127.0.0.1:3000'
-var url = 'https://nodehashxx.mybluemix.net'
+var url = 'http://127.0.0.1:3000'
+//var url = 'https://nodehashxx.mybluemix.net'
 
 // GET
 var dispGet = function(err, res, body) {
