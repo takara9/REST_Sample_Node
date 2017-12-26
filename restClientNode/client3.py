@@ -43,9 +43,10 @@ def work(url):
 if __name__ == '__main__':
     
     url = 'http://127.0.0.1'
+    n = 32
     while True:
-        for p in range(0,4):
+        for p in range(0,n):
             portno = 3000 + p
-            print "p=",portno
+            #print "p=",portno
             uri = url + ":" + str(portno)
             work(uri)
