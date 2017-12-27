@@ -43,27 +43,26 @@ def work(url):
     #print "resp = ", resp.text
     #print
 
-def para_main():
+def cmain(portno):
     global gcnt
-    n = 32
+    print "portno = ",portno
     while True:
-        for p in range(0,n):
-            portno = 3000 + p
-            uri = url + ":" + str(portno)
-            work(uri)
-            gcnt += 1
+        uri = url + ":" + str(portno)
+        work(uri)
+        gcnt += 1
 
 
 def show_rate():
     global gcnt
     t0 = tm.time()
     while True:
+        tm.sleep(5)
         t1 = tm.time()
         tps = gcnt/(t1-t0)
         print t0, gcnt, tps
         t0 = t1
         gcnt = 0
-        tm.sleep(5)
+
         
 
 if __name__ == '__main__':
@@ -74,18 +73,22 @@ if __name__ == '__main__':
     #scale = 15
     #scale = 20
     #scale = 25
-    scale = 3
+    scale = 6
 
     thread = [0] * scale
     show = threading.Thread(target=show_rate)
 
     for i in range(scale):
-        thread[i] = threading.Thread(target=para_main)
+        portno = 3000 + i
+        thread[i] = threading.Thread(target=cmain,args=(portno,))
+        
 
     show.start()
 
     for i in range(scale):
         thread[i].start()
+
+
 
 
 
